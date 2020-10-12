@@ -8,5 +8,6 @@ db.customer.insert({cust_id:5,acc_bal:10000,acc_type:"y"});
 
 db.customer.aggregate([{$match:{acc_type:"Z"}},{$group:{_id:"$cust_id",Totalbal:{$sum:"$acc_bal"}}},{$match:{Totalbal:{$gt:12000}}}]);
 
-
 db.customer.aggregate([{$group:{_id:"$cust_id",min_bal:{$min:"$acc_bal"},max_bal:{$max:"$acc_bal"}}}]);
+
+db.customer.drop();
