@@ -1,0 +1,11 @@
+db.createCollection("Customer1");
+db.Customer1.find();
+db.Customer1.insert({cust_id:1,acc_bal:14000,acc_type:"Z"});
+db.Customer1.insert({cust_id:2,acc_bal:13000,acc_type:"x"});
+db.Customer1.insert({cust_id:3,acc_bal:16000,acc_type:"y"});
+db.Customer1.insert({cust_id:4,acc_bal:15000,acc_type:"Z"});
+
+db.Customer1.find({acc_bal:{"$gt":12000},acc_type:"Z"});
+
+
+db.Customer1.aggregate([{$group:{_id:"$cust_id",min_bal:{$min:"$acc_bal"},max_bal:{$max:"$acc_bal"}}}]);
